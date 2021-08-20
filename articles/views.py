@@ -1,4 +1,4 @@
-from django.views.generic import ListView , DetailView
+from django.views.generic import ListView , DetailView , TemplateView
 from . models import Article
 
 class ArticleListView(ListView):
@@ -8,3 +8,4 @@ class ArticleListView(ListView):
 class ArticleDetailView(DetailView):
     model = Article
     template_name = 'detail.html'
+

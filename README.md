@@ -16,7 +16,7 @@ source ~/virtualenvs/blog_env/bin/activate
 ```
 4 install requiremest 
 ```
-pip -r requirements.txt
+pip install -r requirements.txt
 ```
 5 run django 
 ```

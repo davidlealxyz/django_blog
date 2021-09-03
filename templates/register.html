@@ -1,0 +1,39 @@
+
+{% extends "base.html" %}
+{% load static %}
+
+{% block title %} REGISTER
+{% endblock %}
+{% block content %}
+<div class="d-flex justify-content-center bg-secondary mb-3">
+
+  
+    
+    <form method="post">
+    <h1>Register </h1>
+      {% csrf_token %}
+      {% for field in form %}
+        <p>
+          {{ field.label_tag }}<br>
+          {{ field }}
+          {% if field.help_text %}
+            <small style="color:whitesmoke">{{ field.help_text }}</small>
+          {% endif %}
+          {% for error in field.errors %}
+            <p style="color: red">{{ error }}</p>
+          {% endfor %}
+        </p>
+      {% endfor %}
+      <button type="submit">send</button>
+      
+      
+     
+      <button type="button"><a href="{% url 'login'%}">login</a></button>
+    </form>
+
+
+
+</div>
+
+        
+{% endblock %} 

@@ -1,0 +1,17 @@
+{% extends "base.html" %}
+{% load static %}
+
+{% block title %} new article 
+{% endblock %}
+
+{% block content %}
+<div class="container pt-3 d-flex justify-content-center bg-secondary mb-3">
+    <form method="post">
+      <h1>Has un comentario </h1>
+        {% csrf_token %}
+        {{ form.as_p }}
+        <button type="submit">publicar</button>
+      </form>
+  </div>
+      
+{% endblock  %}

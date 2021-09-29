@@ -1,0 +1,25 @@
+{% extends "base.html" %}
+{% load static %}
+
+{% block title %} {{postd.title}}
+{% endblock %}
+{% block content %}
+<body>
+    essta es la prueba 
+    <h1>{{ article.title }}</h1>
+    <h1>{{article.body}}</h1>
+    <h1>{{article.author}}</h1>
+    {% for i in article.comments.all %}
+    {%  if i.approved_comment%}
+    <h1>{{i.text}}</h1>
+    {% endif %}
+    {% endfor %}
+    <form method="post">
+        <h1>Login </h1>
+          {% csrf_token %}
+          {{ form.as_p }}
+          <button type="submit">Entrar</button>
+        </form>
+
+    {% endblock  %}   
+</body>

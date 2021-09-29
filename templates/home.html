@@ -1,4 +1,5 @@
 {% extends "base.html" %}
+{% load humanize %} 
 {% load static %}
 
 {% block title %} HOME
@@ -12,14 +13,20 @@
      <div class="container pt-3 ">
        
          {% for i in object_list %}
+         {%  if i.approved_comment%}
              <div class="container p-3 text-white border border-dark">
              <h3><a href="{% url 'detail' i.pk %}">{{ i.title }}</a></h3>
-               <p>{{ i.body }}</p>
+               <p>{{ i.body }}</p> <br>
+               <div class="date">{{ i.created_date | naturaltime }}</div>
+              <strong>{{ i.author }}</strong>
             </div>
+            <a href="{% url 'detail' i.pk %}">Comments: {{ i.comments.count }}</a>
             <br><br>
+          {% endif %}
          {% endfor %}
         
         
      </div>
      
 {% endblock %}
+ 

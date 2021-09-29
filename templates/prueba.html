@@ -1,0 +1,9 @@
+ <body>
+     hola juan estas en la prueba 
+     {% for i in object_list  %}
+     <h1><a href="{% url 'coment' i.pk %}">{{i.title}} </a></h1>
+     <p>{{i.body}}</p>
+     <a href="#}">Comments: {{ i.comments.count }}</a>
+     {% endfor %}
+     
+ </body> 

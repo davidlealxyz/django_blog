@@ -1,4 +1,5 @@
 {% extends "base.html" %}
+{% load humanize %} 
 {% load static %}
 
 {% block title %} {{article.title}}
@@ -14,6 +15,34 @@
          <h2>{{ article.title }}</h2>
          <p>{{ article.body }}</p>
          </div>
+         <hr>
+<div class="container pt-3 ">
+  <h1>Comentarios </h1>
+  {% for comment in article.comments.all %}
+  {%  if comment.approved_comment%}
+    <div class="comment border border-dark">
+        <div class="date">{{ comment.created_date | naturaltime }}</div>
+        <strong>{{ comment.author }}</strong>
+        <p>{{ comment.text}}</p>
+    </div>
+  {% endif %} 
+  {% empty %}
+    <p>No comments here yet :(</p>
+ 
+  {% endfor %}
+
+  
+</div>
+<div class="container pt-3 d-flex justify-content-center bg-secondary mb-3">
+  <form method="post">
+    <h1>Has un comentario </h1>
+      {% csrf_token %}
+      {{ form.as_p }}
+      <button type="submit">Comentar</button>
+    </form>
+</div>
     
      </div>
+
+
  {% endblock  %}

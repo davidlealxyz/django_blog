@@ -38,7 +38,7 @@ class New_article(CreateView):
 
 class ArticleListView(ListView):
     model = Article
-    
+    paginate_by = 3
     template_name = 'home.html'
 
 class ArticleDetailView(FormMixin,DetailView):
@@ -69,37 +69,7 @@ class ArticleDetailView(FormMixin,DetailView):
         return super().form_valid(form)
     
 
-'''class Pruebalist(ListView):
-    model = Article
-    
-    template_name = 'prueba.html'
 
-class Pruebacoment(FormMixin, DetailView):
-    model = Article
-    form_class = CommentForm
-    template_name = 'prueba_detail.html'
-    def get_success_url(self):
-        return reverse('coment', kwargs={'pk': self.object.pk})
-
-    def post(self, request, *args, **kwargs):
-        if not request.user.is_authenticated:
-            return HttpResponseForbidden()
-        self.object = self.get_object()
-        form = self.get_form()
-        if form.is_valid():
-            
-            comment = form.save(commit=False)
-            comment.comment = Article
-            
-            comment.save()
-            return self.form_valid(form)
-        else:
-            return self.form_invalid(form)
-
-    def form_valid(self, form):
-        # Here, we would record the user's interest using the message
-        form.cleaned_data['text']
-        return super().form_valid(form)'''
 
    
 
@@ -139,7 +109,7 @@ def activate(request, uidb64, token):
         user.is_active = True
         user.save()
         login(request, user)
-        return redirect('home')
+        return redirect('logout')
         #return HttpResponse('Thank you for your email confirmation. Now you can login your account.')
     else:
         return HttpResponse('Activation link is invalid!')
@@ -180,3 +150,35 @@ def activate(request, uidb64, token):
         return context
     def get_success_url(self):
         return reverse('coment', kwargs={'pk': self.object.pk})"""
+
+'''class Pruebalist(ListView):
+    model = Article
+    
+    template_name = 'prueba.html'
+
+class Pruebacoment(FormMixin, DetailView):
+    model = Article
+    form_class = CommentForm
+    template_name = 'prueba_detail.html'
+    def get_success_url(self):
+        return reverse('coment', kwargs={'pk': self.object.pk})
+
+    def post(self, request, *args, **kwargs):
+        if not request.user.is_authenticated:
+            return HttpResponseForbidden()
+        self.object = self.get_object()
+        form = self.get_form()
+        if form.is_valid():
+            
+            comment = form.save(commit=False)
+            comment.comment = Article
+            
+            comment.save()
+            return self.form_valid(form)
+        else:
+            return self.form_invalid(form)
+
+    def form_valid(self, form):
+        # Here, we would record the user's interest using the message
+        form.cleaned_data['text']
+        return super().form_valid(form)'''
